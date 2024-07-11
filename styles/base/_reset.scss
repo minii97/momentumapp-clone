@@ -1,0 +1,68 @@
+// sass-lint:disable no-vendor-prefixes
+
+* {
+  margin: 0;
+  font-family: 'inter-tight-variable', 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: 'inter-tight-variable', 'Noto Sans KR', sans-serif;
+}
+
+body {
+  font-family: 'inter-tight-variable', 'Noto Sans KR', sans-serif;
+}
+
+// reset normalize.css style
+h1 {
+  margin: 0;
+}
+
+// reset anchor style
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+//reset form elements style
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  border: 0;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+select {
+  appearance: none;
+}
+
+//enhance the UX of buttons and a elements.
+a,
+button {
+  cursor: pointer;
+}
+
+button {
+  padding: 0;
+}
+
+//reset list elements default style
+ul,
+ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+//Change the default font-style of address element
+address {
+  font-style: normal;
+}
