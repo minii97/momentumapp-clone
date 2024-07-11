@@ -1,0 +1,12 @@
+@mixin responsive($device) {
+  @if ($device == T) {
+    @media screen and (max-width: 1199px) {
+      @content;
+    }
+  }
+  @if ($device == M) {
+    @media screen and (max-width: 767px) {
+      @content;
+    }
+  }
+}
