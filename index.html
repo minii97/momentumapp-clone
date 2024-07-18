@@ -66,9 +66,17 @@
         <label class="main-form-label" for="main-form-input"
           >What is your main goal for today?</label
         >
-        <input id="main-form-input" class="main-form-input" type="text" />
+        <input
+          id="main-form-input"
+          class="main-form-input"
+          type="text"
+          required
+        />
+
+        <p class="hide">Please enter your Todo</p>
       </form>
-      <div class="main-contents-todo">
+
+      <div class="main-contents-todo hide">
         <h3 class="todo-title">Today</h3>
 
         <div class="todo-contents">
