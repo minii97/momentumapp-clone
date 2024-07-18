@@ -12,6 +12,11 @@
   border: 0 !important;
 }
 
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .sm-only {
   @media screen and (min-width: 768px) {
     display: none !important ;
