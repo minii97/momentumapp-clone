@@ -77,6 +77,10 @@
       </form>
 
       <div class="main-contents-todo hide">
+        <div class="todo-message">
+          <i class="bi bi-fire"></i><span>Great Work!</span>
+        </div>
+
         <h3 class="todo-title">Today</h3>
 
         <div class="todo-contents">
@@ -88,9 +92,30 @@
           <label class="todo-label" for="todo-checkbox"
             ><span>Study</span></label
           >
-          <button class="todo-more-btn">
-            <i class="bi bi-three-dots"></i>
-          </button>
+
+          <div class="todo-more">
+            <button type="button" class="todo-more-btn">
+              <i class="bi bi-three-dots"></i>
+            </button>
+
+            <ul class="todo-more-list">
+              <li class="todo-more-item">
+                <button type="button">
+                  <i class="bi bi-trash"></i> <span>Clear</span>
+                </button>
+              </li>
+              <li class="todo-more-item">
+                <button type="button">
+                  <i class="bi bi-pencil"></i> <span>Edit</span>
+                </button>
+              </li>
+              <li class="todo-more-item">
+                <button type="button" class="close-btn">
+                  <i class="bi bi-x-lg"></i> <span>Close</span>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </main>
@@ -104,5 +129,6 @@
     <script src="./js/bg.js"></script>
     <script src="./js/login.js"></script>
     <script src="./js/time.js"></script>
+    <script src="./js/todo.js"></script>
   </body>
 </html>

@@ -1,7 +1,6 @@
 .main-contents {
   @include pos-center-y;
   @include flexbox;
-  position: absolute;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
@@ -51,78 +50,6 @@
       margin-top: 12px;
       font-size: 20px;
       transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    }
-  }
-
-  &-todo {
-    position: absolute;
-    bottom: 0;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-
-    .todo-title {
-      margin-bottom: 12px;
-      font-size: 22px;
-      text-transform: uppercase;
-    }
-
-    .todo-contents {
-      @include flexbox;
-
-      &:hover {
-        label::before,
-        .todo-more-btn {
-          visibility: visible;
-        }
-      }
-    }
-
-    .todo-checkbox:checked {
-      & + label {
-        span {
-          color: rgba(255, 255, 255, 0.85);
-          text-decoration: line-through;
-        }
-
-        &::before {
-          content: '\F633';
-          visibility: visible;
-        }
-      }
-    }
-
-    .todo-label {
-      @include flexbox;
-
-      span {
-        margin: 0 12px;
-        font-size: 36px;
-      }
-
-      &::before {
-        @include flexbox;
-        position: relative;
-        top: -3px;
-        width: 22px;
-        height: 22px;
-        font-family: bootstrap-icons !important;
-        font-weight: 600;
-        background-color: rgba(255, 255, 255, 0.12);
-        border: 3px solid #fff;
-        border-radius: 6px;
-        content: '';
-        visibility: hidden;
-      }
-    }
-
-    .todo-more-btn {
-      @include flexbox;
-      width: 20px;
-      height: 20px;
-      visibility: hidden;
-
-      i {
-        font-size: 20px;
-      }
     }
   }
 
