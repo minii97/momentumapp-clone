@@ -1,17 +1,19 @@
 .quote {
-  position: absolute;
-  bottom: 20px;
+  &-container {
+    position: absolute;
+    bottom: 20px;
 
-  &:hover {
-    .quote-item {
-      &:first-child {
-        transform: translateY(-10px);
-      }
+    &:hover {
+      .quote-item {
+        &:first-child {
+          transform: translateY(-10px);
+        }
 
-      &:last-child {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+        &:last-child {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
       }
     }
   }
