@@ -1,0 +1,33 @@
+.quote {
+  position: absolute;
+  bottom: 20px;
+
+  &:hover {
+    .quote-item {
+      &:first-child {
+        transform: translateY(-10px);
+      }
+
+      &:last-child {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &-item {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+
+    &:last-child {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+    }
+
+    dd {
+      font-size: 18px;
+    }
+  }
+}
