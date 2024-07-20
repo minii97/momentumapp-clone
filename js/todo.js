@@ -14,6 +14,8 @@ const todoMoreItem = todoMoreContainer.querySelectorAll(
 
 let i = 0
 
+const mql = window.matchMedia('(max-width: 768px)')
+
 function submitTodoForm(e) {
   // submit 이벤트 발생시
   e.preventDefault()
@@ -59,7 +61,10 @@ function hideToDoMoreList() {
   todoMoreBtn.style.visibility = 'hidden'
   todoMoreBtn.classList.remove('is-active')
   todoMoreList.style.display = 'none'
-  overlay.classList.add('hide')
+
+  if (mql.matches) {
+    overlay.classList.add('hide')
+  }
 }
 
 function checkACheckBox() {
@@ -85,7 +90,9 @@ function revealTodoMoreList(e) {
     e.currentTarget.style.visibility = 'visible'
     e.currentTarget.classList.add('is-active')
     todoMoreList.style.display = 'block'
-    overlay.classList.remove('hide')
+    if (mql.matches) {
+      overlay.classList.remove('hide')
+    }
   } else {
     hideToDoMoreList()
   }
