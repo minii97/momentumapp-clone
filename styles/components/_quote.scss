@@ -26,10 +26,61 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(-20px);
+
+      dd {
+        font-size: 14px;
+        opacity: 0.7;
+      }
     }
 
     dd {
       font-size: 18px;
+    }
+  }
+
+  @include responsive(T) {
+    &-container {
+      bottom: 40px;
+      padding: 0 100px;
+    }
+  }
+
+  @include responsive(M) {
+    &-container {
+      padding: 0 20px;
+    }
+
+    &-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px;
+      font-size: 12px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+    }
+
+    &-list {
+      @include pos-center(fixed);
+      z-index: 200;
+      width: 100%;
+      padding: 0 30px;
+      opacity: 0;
+      visibility: hidden;
+
+      &.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &-item {
+      &:last-child {
+        margin-top: 20px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
     }
   }
 }
