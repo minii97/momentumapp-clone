@@ -1,6 +1,6 @@
 .main-contents-todo {
   position: absolute;
-  bottom: 0;
+  bottom: 240px;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
   .todo-message {
@@ -57,8 +57,13 @@
     @include flexbox;
 
     span {
+      display: block;
+      max-width: 60vw;
       margin: 0 12px;
+      overflow: hidden;
       font-size: 36px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     &::before {
@@ -80,10 +85,11 @@
   .todo-more {
     position: relative;
 
-    &-list {
+    &-list-wrap {
       position: absolute;
-      top: 33px;
-      right: -80px;
+      top: 43px;
+      right: -74px;
+      z-index: 100;
       display: none;
       padding: 12px 8px;
       background-color: rgba(0, 0, 0, 0.8);
@@ -111,12 +117,12 @@
         border-radius: 6px;
 
         i {
-          position: relative;
           margin-right: 12px;
           font-size: 12px;
         }
 
-        &:hover {
+        &:hover,
+        &:active {
           background-color: rgba(255, 255, 255, 0.2);
         }
       }
@@ -124,12 +130,19 @@
 
     &-btn {
       @include flexbox;
-      width: 20px;
-      height: 20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
       visibility: hidden;
+
+      &:hover,
+      &.is-active {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
 
       i {
         font-size: 20px;
+        transform: translateY(1px);
       }
     }
   }
@@ -142,11 +155,12 @@
     }
 
     .todo-more-btn {
-      visibility: visible;
+      visibility: visible !important;
     }
   }
 
   @include responsive(M) {
+    bottom: 100px;
     .todo-message {
       padding: 8px 16px;
       font-size: 16px;
@@ -159,13 +173,47 @@
 
     .todo-label {
       span {
-        font-size: 22px;
+        max-width: 40vw;
+        font-size: 18px;
       }
 
       &::before {
         width: 16px;
         height: 16px;
         border-radius: 50%;
+      }
+    }
+
+    .todo-more {
+      &-list-wrap {
+        position: fixed;
+        top: auto;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 20px;
+        padding-left: 12px;
+        border-radius: 12px 12px 0 0;
+
+        &::before {
+          content: none;
+        }
+      }
+
+      &-list-title {
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      &-item button {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+
+        i {
+          margin-right: 16px;
+          font-size: 16px;
+        }
       }
     }
   }
