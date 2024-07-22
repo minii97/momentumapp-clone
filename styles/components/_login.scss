@@ -64,6 +64,12 @@
     }
   }
 
+  @include responsive(T) {
+    &-title {
+      font-size: 60px;
+    }
+  }
+
   @include responsive(M) {
     padding: 0 20px;
 
