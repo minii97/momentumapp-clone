@@ -5,7 +5,7 @@
 
   .todo-message {
     @include pos-center-x(fixed);
-    top: -40%;
+    top: 20px;
     padding: 12px 24px;
     font-size: 18px;
     background-color: rgba(0, 0, 0, 0.8);
@@ -132,8 +132,13 @@
       @include flexbox;
       width: 30px;
       height: 30px;
+      pointer-events: none;
       border-radius: 50%;
       visibility: hidden;
+
+      &.clickable {
+        pointer-events: auto;
+      }
 
       &:hover,
       &.is-active {
@@ -161,9 +166,16 @@
 
   @include responsive(M) {
     bottom: 100px;
+
     .todo-message {
+      top: auto;
+      bottom: 20px;
       padding: 8px 16px;
       font-size: 16px;
+
+      &.reveal-message {
+        animation: reveal-msg-sm 2s ease-in-out;
+      }
     }
 
     .todo-title {
@@ -224,6 +236,30 @@
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50%) translateY(-20px);
+  }
+
+  50% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  80% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes reveal-msg-sm {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(20px);
   }
 
   50% {

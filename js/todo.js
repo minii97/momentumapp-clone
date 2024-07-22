@@ -15,6 +15,7 @@ const todoMoreItem = todoMoreContainer.querySelectorAll(
 let i = 0
 
 const mql = window.matchMedia('(max-width: 768px)')
+// .overlay 요소의 is-active toggle을 위해 반응형 구현을 위한 matchMedia API 사용
 
 function submitTodoForm(e) {
   // submit 이벤트 발생시
@@ -40,7 +41,8 @@ function submitTodoForm(e) {
 
     todoForm.classList.add('hide')
     todoContainer.classList.remove('hide')
-    // todoForm은 숨기고, todoContainer를 보이게함.
+    todoMoreBtn.classList.add('clickable')
+    // todoForm은 숨기고, todoContainer를 보이게함, todoMoreBtn이 클릭 가능하게함.
   }
 }
 
@@ -52,6 +54,7 @@ if (localStorage.getItem('todo') !== null) {
   todoLabel.innerHTML = localStorage.getItem('todo')
   todoForm.classList.add('hide')
   todoContainer.classList.remove('hide')
+  todoMoreBtn.classList.add('clickable')
 }
 if (localStorage.getItem('checked') == 'true') {
   todoCheckBox.checked = true
@@ -84,17 +87,19 @@ function checkACheckBox() {
 todoCheckBox.addEventListener('click', checkACheckBox)
 
 function revealTodoMoreList(e) {
-  i++
+  if (!todoContainer.classList.contains('hide')) {
+    i++
 
-  if (i % 2 == 1) {
-    e.currentTarget.style.visibility = 'visible'
-    e.currentTarget.classList.add('is-active')
-    todoMoreList.style.display = 'block'
-    if (mql.matches) {
-      overlay.classList.remove('hide')
+    if (i % 2 == 1) {
+      e.currentTarget.style.visibility = 'visible'
+      e.currentTarget.classList.add('is-active')
+      todoMoreList.style.display = 'block'
+      if (mql.matches) {
+        overlay.classList.remove('hide')
+      }
+    } else {
+      hideToDoMoreList()
     }
-  } else {
-    hideToDoMoreList()
   }
   // todoMoreBtn을 홀수번 누르면 나타나게 짝수번 누르면 사라지게
 }
@@ -124,6 +129,7 @@ function featuresForTodoMoreItems(e) {
 
     hideToDoMoreList()
     todoForm.classList.remove('hide')
+    todoMoreBtn.classList.remove('clickable')
     todoContainer.classList.add('hide')
     todoCheckBox.checked = false
     localStorage.removeItem('checked')
