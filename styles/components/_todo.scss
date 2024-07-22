@@ -1,6 +1,6 @@
 .main-contents-todo {
   position: absolute;
-  bottom: 240px;
+  bottom: 140px;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
   .todo-message {
@@ -32,7 +32,7 @@
     @include flexbox;
 
     &:hover {
-      .todo-more-btn {
+      .more-btn {
         visibility: visible !important;
       }
     }
@@ -133,27 +133,8 @@
       }
     }
 
-    &-btn {
-      @include flexbox;
-      width: 30px;
-      height: 30px;
+    .more-btn {
       pointer-events: none;
-      border-radius: 50%;
-      visibility: hidden;
-
-      &.clickable {
-        pointer-events: auto;
-      }
-
-      &:hover,
-      &.is-active {
-        background-color: rgba(255, 255, 255, 0.3);
-      }
-
-      i {
-        font-size: 20px;
-        transform: translateY(1px);
-      }
     }
   }
 
@@ -164,7 +145,7 @@
       }
     }
 
-    .todo-more-btn {
+    .more-btn {
       visibility: visible !important;
     }
   }
@@ -189,6 +170,12 @@
     }
 
     .todo-label {
+      pointer-events: none;
+
+      &.clickable {
+        pointer-events: auto;
+      }
+
       span {
         max-width: 40vw;
         font-size: 18px;

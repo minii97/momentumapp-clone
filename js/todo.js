@@ -2,11 +2,12 @@ const todoForm = mainContents.querySelector('.main-contents-form')
 const todoContainer = mainContents.querySelector('.main-contents-todo')
 const todoFormText = todoForm.querySelector('p')
 const todoFormInput = todoForm.querySelector('input')
-const todoLabel = todoContainer.querySelector('.todo-contents label span')
+const todoLabel = todoContainer.querySelector('.todo-contents label')
+const todoLabelSpan = todoLabel.querySelector('span')
 const todoCheckBox = todoContainer.querySelector('.todo-checkbox')
 const todoCheckMessage = todoContainer.querySelector('.todo-message')
 const todoMoreContainer = todoContainer.querySelector('.todo-more')
-const todoMoreBtn = todoMoreContainer.querySelector('.todo-more-btn')
+const todoMoreBtn = todoMoreContainer.querySelector('.more-btn')
 const todoMoreList = todoMoreContainer.querySelector('.todo-more-list-wrap')
 const todoMoreItem = todoMoreContainer.querySelectorAll(
   '.todo-more-item button'
@@ -36,12 +37,13 @@ function submitTodoForm(e) {
     }
     localStorage.setItem('todo', todoFormInputValue)
     // "todo" key에 입력값을 value에 저장
-    todoLabel.innerHTML = localStorage.getItem('todo')
+    todoLabelSpan.innerHTML = localStorage.getItem('todo')
     // label 요소의 텍스트 컨텐츠를 저장한 입력값을 가져와서 넣는다.
 
     todoForm.classList.add('hide')
     todoContainer.classList.remove('hide')
     todoMoreBtn.classList.add('clickable')
+    todoLabel.classList.add('clickable')
     // todoForm은 숨기고, todoContainer를 보이게함, todoMoreBtn이 클릭 가능하게함.
   }
 }
@@ -51,10 +53,11 @@ todoForm.addEventListener('submit', (e) => {
 })
 
 if (localStorage.getItem('todo') !== null) {
-  todoLabel.innerHTML = localStorage.getItem('todo')
+  todoLabelSpan.innerHTML = localStorage.getItem('todo')
   todoForm.classList.add('hide')
   todoContainer.classList.remove('hide')
   todoMoreBtn.classList.add('clickable')
+  todoLabel.classList.add('clickable')
 }
 if (localStorage.getItem('checked') == 'true') {
   todoCheckBox.checked = true
@@ -130,6 +133,7 @@ function featuresForTodoMoreItems(e) {
     hideToDoMoreList()
     todoForm.classList.remove('hide')
     todoMoreBtn.classList.remove('clickable')
+    todoLabel.classList.remove('clickable')
     todoContainer.classList.add('hide')
     todoCheckBox.checked = false
     localStorage.removeItem('checked')

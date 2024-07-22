@@ -41,8 +41,6 @@ function getPositionSuccess(pos) {
         tempElement.innerHTML = `${temp}&#8451;`
         locationElement.innerHTML = `${locationCity}, ${locationCountry}`
 
-        console.log(weatherConditionAObj.rain)
-
         if (weatherCondition.thunderstorm) {
           weatherDescElement.innerHTML = `<i class="bi bi-lightning"></i>`
         } else if (weatherConditionAObj.rain) {

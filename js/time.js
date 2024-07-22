@@ -1,6 +1,6 @@
 const timeElement = mainContents.querySelector('.main-contents-time')
 // timeElement를 <time>태그를 감싼 div로 한 이유는 innerHTML method 사용을 위해서임.
-const phraseElement = mainContents.querySelector('.greeting-phrase')
+const phraseElement = mainContents.querySelectorAll('.greeting-phrase')
 
 function paintGreeting() {
   function paintTime() {
@@ -22,16 +22,18 @@ function paintGreeting() {
   }
 
   function paintGreetingPhrase() {
-    if (hours >= 19 || hours < 6) {
-      phraseElement.innerHTML = 'Good Evening'
-      // 만일 hours가 19 이상 혹은 6미만이면 span에 good evening
-    } else if (6 <= hours && hours <= 11) {
-      phraseElement.innerHTML = 'Good Morning'
-      // 만일 hours가 6 이상 혹은 11이하면 span에 good morning
-    } else if (12 <= hours && hours <= 18) {
-      phraseElement.innerHTML = 'Good Afternoon'
-      // 만일 hours가 12 이상 혹은 18이하면 span에 good afternoon
-    }
+    phraseElement.forEach((item) => {
+      if (hours >= 19 || hours < 6) {
+        item.innerHTML = 'Good Evening'
+        // 만일 hours가 19 이상 혹은 6미만이면 span에 good evening
+      } else if (6 <= hours && hours <= 11) {
+        item.innerHTML = 'Good Morning'
+        // 만일 hours가 6 이상 혹은 11이하면 span에 good morning
+      } else if (12 <= hours && hours <= 18) {
+        item.innerHTML = 'Good Afternoon'
+        // 만일 hours가 12 이상 혹은 18이하면 span에 good afternoon
+      }
+    })
   }
 
   paintTime()

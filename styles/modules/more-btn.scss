@@ -1,0 +1,25 @@
+%more-btn {
+  @include flexbox;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  visibility: hidden;
+
+  &.clickable {
+    pointer-events: auto !important;
+  }
+
+  &:hover,
+  &.is-active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  i {
+    font-size: 20px;
+    transform: translateY(1px);
+  }
+}
+
+.more-btn {
+  @extend %more-btn;
+}

@@ -5,7 +5,7 @@ const loginForm = loginContainer.querySelector('.login-form')
 const loginFormText = loginForm.querySelectorAll('.login-form-text span')
 const loginFormInput = loginForm.querySelector('input')
 
-const mainContentsUsernameElement = mainContents.querySelector('.username')
+const mainContentsUsernameElement = mainContents.querySelectorAll('.username')
 
 function login(e) {
   e.preventDefault()
@@ -26,7 +26,9 @@ function login(e) {
     mainContents.classList.remove('hide')
     // 로그인 화면/로고를 없애고, 메인컨텐츠 (= 투두 입력하는 화면)를 보이게함
 
-    mainContentsUsernameElement.innerHTML = localStorage.getItem('username')
+    mainContentsUsernameElement.forEach((item) => {
+      item.innerHTML = localStorage.getItem('username')
+    })
     // main contents의 username부분을 내가 입력하여 로컬스토리지에 저장한 값을 불러와서 집어 넣음.
   }
 }
@@ -42,7 +44,9 @@ if (localStorage.getItem('username') !== null) {
   mainContents.classList.remove('hide')
   // 로그인 화면과 로고를 안보이게 하고 투두 입력화면을 보이게함.
 
-  mainContentsUsernameElement.innerHTML = localStorage.getItem('username')
+  mainContentsUsernameElement.forEach((item) => {
+    item.innerHTML = localStorage.getItem('username')
+  })
 } else {
   loginContainer.classList.remove('hide')
   logo.classList.remove('hide')
