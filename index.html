@@ -34,7 +34,13 @@
       <div class="login">
         <h1 class="login-title">Hello! What's your name?</h1>
         <form class="login-form" method="get" action="#">
-          <input type="text" class="login-form-input" required maxlength="20" />
+          <input
+            type="text"
+            class="login-form-input"
+            required
+            maxlength="20"
+            autocomplete="off"
+          />
           <p class="login-form-text">
             <span
               >Please enter your first name or the name you prefer to be
@@ -70,6 +76,7 @@
           id="main-form-input"
           class="main-form-input"
           type="text"
+          autocomplete="off"
           required
         />
 
@@ -89,9 +96,7 @@
             id="todo-checkbox"
             type="checkbox"
           />
-          <label class="todo-label" for="todo-checkbox"
-            ><span>Study</span></label
-          >
+          <label class="todo-label" for="todo-checkbox"><span></span></label>
 
           <div class="todo-more">
             <button type="button" class="todo-more-btn">
@@ -138,10 +143,38 @@
           </div>
         </dl>
       </div>
+
+      <div class="weather-container">
+        <dl class="weather-list hide">
+          <div class="weather-item desc">
+            <dt class="visually-hidden">Weather</dt>
+            <dd>
+              <i class="bi bi-sun"></i>
+              <span class="visually-hidden"></span>
+            </dd>
+          </div>
+          <div class="weather-item temp">
+            <dt class="visually-hidden">Temp</dt>
+            <dd>00&#8451;</dd>
+          </div>
+          <div class="weather-item location">
+            <dt class="visually-hidden">Location</dt>
+            <dd>City, Country</dd>
+          </div>
+        </dl>
+
+        <span class="weather-loading">Loading...</span>
+        <p class="weather-load-fail hide">
+          <span><i class="bi bi-exclamation-circle"></i> Failed to load</span>
+          <span
+            ><span class="weather-load-fail-span">location</span> info.</span
+          >
+        </p>
+      </div>
     </main>
     <div class="bg-container"></div>
     <div class="overlay-animation"></div>
-    <div class="overlay sm-only hide"></div>
+    <div class="overlay hide"></div>
     <figure class="logo">
       <figcaption class="visually-hidden">Logo</figcaption>
       <img src="assets/img/logo.svg" alt="" />
@@ -152,5 +185,6 @@
     <script src="./js/time.js"></script>
     <script src="./js/todo.js"></script>
     <script src="./js/quote.js"></script>
+    <script src="./js/weather.js"></script>
   </body>
 </html>

@@ -1,0 +1,84 @@
+.weather {
+  &-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 80px;
+    min-width: 150px;
+    padding: 20px;
+  }
+
+  &-list {
+    @include pos-center;
+    width: max-content;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition-delay: 1s;
+  }
+
+  &-item {
+    &.desc {
+      float: left;
+
+      i {
+        position: relative;
+        top: 1px;
+        font-size: 32px;
+      }
+    }
+
+    &.temp {
+      float: right;
+      font-size: 22px;
+    }
+
+    &.desc,
+    &.temp {
+      @include flexbox;
+      height: 40px;
+    }
+  }
+
+  &-loading {
+    @include pos-center;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  &-load-fail {
+    @include pos-center;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition-delay: 1s;
+
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  @include responsive(M) {
+    &-container {
+      min-width: 120px;
+    }
+
+    &-item {
+      &.desc i {
+        font-size: 22px;
+      }
+
+      &.temp {
+        font-size: 16px;
+      }
+
+      &.desc,
+      &.temp {
+        height: 32px;
+      }
+
+      &.location {
+        font-size: 12px;
+      }
+    }
+
+    &-load-fail {
+      font-size: 12px;
+    }
+  }
+}
