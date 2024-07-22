@@ -32,7 +32,6 @@
     @include flexbox;
 
     &:hover {
-      label::before,
       .todo-more-btn {
         visibility: visible !important;
       }
@@ -55,6 +54,12 @@
 
   .todo-label {
     @include flexbox;
+
+    &:hover {
+      &::before {
+        visibility: visible !important;
+      }
+    }
 
     span {
       display: block;
