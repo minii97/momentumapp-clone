@@ -25,37 +25,37 @@ function getPositionSuccess(pos) {
         const temp = Math.round(data.main.temp)
         const locationCountry = data.sys.country
         const locationCity = data.name
-        const weatherDesc = data.weather[0].description
+        const weatherCondition = String(data.weather[0].id)
+
+        const weatherConditionAObj = {
+          thunderstorm: weatherCondition.startsWith('2'),
+          rain:
+            weatherCondition.startsWith('3') ||
+            weatherCondition.startsWith('5'),
+          snow: weatherCondition.startsWith('6'),
+          mist: weatherCondition.startsWith('7'),
+          clear: weatherCondition == '800',
+          clouds: weatherCondition.startsWith('8') && weatherCondition != '800',
+        }
 
         tempElement.innerHTML = `${temp}&#8451;`
         locationElement.innerHTML = `${locationCity}, ${locationCountry}`
 
-        switch (weatherDesc) {
-          case 'clear sky':
-            weatherDescElement.innerHTML = `<i class="bi bi-sun"></i>`
-            break
-          case 'few clouds':
-            weatherDescElement.innerHTML = `<i class="bi bi-cloud-sun"></i>`
-            break
-          case 'scattered clouds':
-          case 'broken clouds':
-            weatherDescElement.innerHTML = `<i class="bi bi-clouds"></i>`
-            break
-          case 'shower rain':
-          case 'rain':
-            weatherDescElement.innerHTML = `<i class="bi bi-umbrella"></i>`
-            break
-          case 'thunderstorm':
-            weatherDescElement.innerHTML = `<i class="bi bi-lightning"></i>`
-            break
-          case 'snow':
-            weatherDescElement.innerHTML = `<i class="bi bi-snow"></i>`
-            break
-          case 'mist':
-            weatherDescElement.innerHTML = `<i class="bi bi-cloud-fog2"></i>`
-            break
-        }
+        console.log(weatherConditionAObj.rain)
 
+        if (weatherCondition.thunderstorm) {
+          weatherDescElement.innerHTML = `<i class="bi bi-lightning"></i>`
+        } else if (weatherConditionAObj.rain) {
+          weatherDescElement.innerHTML = `<i class="bi bi-umbrella"></i>`
+        } else if (weatherConditionAObj.snow) {
+          weatherDescElement.innerHTML = `<i class="bi bi-snow"></i>`
+        } else if (weatherConditionAObj.mist) {
+          weatherDescElement.innerHTML = `<i class="bi bi-cloud-fog2"></i>`
+        } else if (weatherConditionAObj.snow) {
+          weatherDescElement.innerHTML = `<i class="bi bi-sun"></i>`
+        } else if (weatherConditionAObj.clouds) {
+          weatherDescElement.innerHTML = `<i class="bi bi-clouds"></i>`
+        }
         setTimeout(() => {
           weatherLoading.classList.add('hide')
         }, 500)
