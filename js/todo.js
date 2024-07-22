@@ -14,7 +14,7 @@ const todoMoreItem = todoMoreContainer.querySelectorAll(
 
 let i = 0
 
-const mql = window.matchMedia('(max-width: 768px)')
+const mql = window.matchMedia('(max-width: 767px)')
 // .overlay 요소의 is-active toggle을 위해 반응형 구현을 위한 matchMedia API 사용
 
 function submitTodoForm(e) {
