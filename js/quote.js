@@ -17,8 +17,8 @@ fetch('./assets/data/quote.json')
       overlay.classList.remove('hide')
       quoteList.classList.add('is-active')
 
-      overlay.addEventListener('click', () => {
-        overlay.classList.add('hide')
+      overlay.addEventListener('click', (e) => {
+        e.currentTarget.classList.add('hide')
         quoteList.classList.remove('is-active')
       })
     })

@@ -8,7 +8,8 @@
 @import './mixins/positions';
 @import './mixins/responsive';
 
-@import 'modules/more-btn.scss';
+@import 'modules/more-btn';
+@import 'modules/more-menu';
 
 @import 'layout/bg-container';
 @import 'layout/overlay';

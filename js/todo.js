@@ -1,22 +1,6 @@
-const todoForm = mainContents.querySelector('.main-contents-form')
-const todoContainer = mainContents.querySelector('.main-contents-todo')
 const todoFormText = todoForm.querySelector('p')
-const todoFormInput = todoForm.querySelector('input')
-const todoLabel = todoContainer.querySelector('.todo-contents label')
 const todoLabelSpan = todoLabel.querySelector('span')
-const todoCheckBox = todoContainer.querySelector('.todo-checkbox')
 const todoCheckMessage = todoContainer.querySelector('.todo-message')
-const todoMoreContainer = todoContainer.querySelector('.todo-more')
-const todoMoreBtn = todoMoreContainer.querySelector('.more-btn')
-const todoMoreList = todoMoreContainer.querySelector('.todo-more-list-wrap')
-const todoMoreItem = todoMoreContainer.querySelectorAll(
-  '.todo-more-item button'
-)
-
-let i = 0
-
-const mql = window.matchMedia('(max-width: 767px)')
-// .overlay 요소의 is-active toggle을 위해 반응형 구현을 위한 matchMedia API 사용
 
 function submitTodoForm(e) {
   // submit 이벤트 발생시
@@ -63,19 +47,8 @@ if (localStorage.getItem('checked') == 'true') {
   todoCheckBox.checked = true
 }
 
-function hideToDoMoreList() {
-  todoMoreBtn.style.visibility = 'hidden'
-  todoMoreBtn.classList.remove('is-active')
-  todoMoreList.style.display = 'none'
-
-  if (mql.matches) {
-    overlay.classList.add('hide')
-  }
-}
-
 function checkACheckBox() {
   i = 0
-  hideToDoMoreList()
 
   localStorage.setItem('checked', todoCheckBox.checked)
 
@@ -88,60 +61,3 @@ function checkACheckBox() {
 }
 
 todoCheckBox.addEventListener('click', checkACheckBox)
-
-function revealTodoMoreList(e) {
-  if (!todoContainer.classList.contains('hide')) {
-    i++
-
-    if (i % 2 == 1) {
-      e.currentTarget.style.visibility = 'visible'
-      e.currentTarget.classList.add('is-active')
-      todoMoreList.style.display = 'block'
-      if (mql.matches) {
-        overlay.classList.remove('hide')
-      }
-    } else {
-      hideToDoMoreList()
-    }
-  }
-  // todoMoreBtn을 홀수번 누르면 나타나게 짝수번 누르면 사라지게
-}
-
-todoMoreBtn.addEventListener('click', (e) => {
-  revealTodoMoreList(e)
-})
-
-todoMoreItem.forEach((item) => {
-  item.addEventListener('click', (e) => {
-    featuresForTodoMoreItems(e)
-  })
-})
-
-function featuresForTodoMoreItems(e) {
-  if (
-    e.currentTarget.classList.contains('clear-btn') ||
-    e.currentTarget.classList.contains('edit-btn')
-  ) {
-    i = 0
-    if (e.currentTarget.classList.contains('edit-btn')) {
-      todoFormInput.value = localStorage.getItem('todo')
-    }
-    if (e.currentTarget.classList.contains('clear-btn')) {
-      todoFormInput.value = ''
-    }
-
-    hideToDoMoreList()
-    todoForm.classList.remove('hide')
-    todoMoreBtn.classList.remove('clickable')
-    todoLabel.classList.remove('clickable')
-    todoContainer.classList.add('hide')
-    todoCheckBox.checked = false
-    localStorage.removeItem('checked')
-    localStorage.removeItem('todo')
-    // todomoreitem(=todo more list의 버튼들)을 눌렀을때 clear-btn/edit-btn이면 todoform이 나오게하여 수정이 가능케함.
-  } else if (e.currentTarget.classList.contains('close-btn')) {
-    i = 0
-    hideToDoMoreList()
-  }
-  // close-btn은 todoform이 나오게하여 수정이 가능케함.
-}

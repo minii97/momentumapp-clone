@@ -57,15 +57,96 @@
       </div>
     </div>
 
-    <main class="main-contents hide">
+    <main class="main-contents">
       <div class="main-contents-text">
         <div class="main-contents-time">
           <time datetime="2024-07-03 00:00">00:00</time>
         </div>
-        <h3 class="main-contents-greeting">
-          <span class="greeting-phrase"></span>,
-          <span class="username">Username</span>.
-        </h3>
+
+        <div class="main-contents-greeting lg-only">
+          <h3 class="greeting-text">
+            <span class="greeting-phrase"></span>,
+            <span class="username"></span>
+          </h3>
+
+          <div class="greeting-more more-menu">
+            <button class="more-btn" type="button" aria-label="more menu">
+              <i class="bi bi-three-dots"></i>
+            </button>
+
+            <div class="more-menu-list-wrap">
+              <ul class="more-menu-list">
+                <li class="more-menu-item">
+                  <button class="edit-name-btn" type="button">
+                    <span>Edit name</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="logout-btn" type="button">
+                    <span>Logout</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="close-btn" type="button">
+                    <span>Close</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-contents-greeting lg-hidden">
+          <div class="greeting-more more-menu">
+            <button class="greeting-btn">
+              <span class="greeting-phrase"></span>,
+              <span class="username"></span>
+            </button>
+
+            <div class="more-menu-list-wrap">
+              <h3 class="more-menu-list-title">User Menu</h3>
+
+              <ul class="more-menu-list">
+                <li class="more-menu-item">
+                  <button class="edit-name-btn" type="button">
+                    <span>Edit name</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="logout-btn" type="button">
+                    <span>Logout</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="close-btn" type="button">
+                    <span>Close</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="greeting-message">
+          <span>Please enter a real name, not a blank space </span>
+        </div>
+
+        <div class="logout">
+          <h3 class="logout-title">Alert</h3>
+          <p class="logout-text">
+            If you log out,
+            <strong>
+              all the information you entered (To-Do list, Today goal, name)
+              will be deleted.
+            </strong>
+            Are you sure you want to log out?
+          </p>
+
+          <div class="logout-btn-wrap">
+            <button type="button" class="yes-btn">Yes</button>
+            <button type="button" class="no-btn">No</button>
+          </div>
+        </div>
       </div>
 
       <form class="main-contents-form" method="get" action="#">
@@ -98,26 +179,26 @@
           />
           <label class="todo-label" for="todo-checkbox"><span></span></label>
 
-          <div class="todo-more">
-            <button type="button" class="todo-more-btn">
+          <div class="todo-more more-menu">
+            <button type="button" class="more-btn">
               <i class="bi bi-three-dots"></i>
             </button>
 
-            <div class="todo-more-list-wrap">
-              <h3 class="todo-more-list-title sm-only">Menu</h3>
+            <div class="more-menu-list-wrap">
+              <h3 class="more-menu-list-title lg-hidden">Menu</h3>
 
-              <ul class="todo-more-list">
-                <li class="todo-more-item">
+              <ul class="more-menu-list">
+                <li class="more-menu-item">
                   <button type="button" class="clear-btn">
                     <i class="bi bi-trash"></i> <span>Clear</span>
                   </button>
                 </li>
-                <li class="todo-more-item">
+                <li class="more-menu-item">
                   <button type="button" class="edit-btn">
                     <i class="bi bi-pencil"></i> <span>Edit</span>
                   </button>
                 </li>
-                <li class="todo-more-item">
+                <li class="more-menu-item">
                   <button type="button" class="close-btn">
                     <i class="bi bi-x-lg"></i> <span>Close</span>
                   </button>
@@ -179,6 +260,7 @@
       <figcaption class="visually-hidden">Logo</figcaption>
       <img src="assets/img/logo.svg" alt="" />
     </figure>
+
     <script src="./js/global.js"></script>
     <script src="./js/bg.js"></script>
     <script src="./js/login.js"></script>
@@ -186,5 +268,6 @@
     <script src="./js/todo.js"></script>
     <script src="./js/quote.js"></script>
     <script src="./js/weather.js"></script>
+    <script src="./js/more-menu.js"></script>
   </body>
 </html>
