@@ -12,9 +12,11 @@ function crateRandomNum(length) {
   return randomNum
 }
 
-const todoContainer = mainContents.querySelector('.main-contents-todo')
-const todoForm = mainContents.querySelector('.main-contents-form')
-const todoFormInput = todoForm.querySelector('input')
-const todoCheckBox = todoContainer.querySelector('.todo-checkbox')
-const todoMoreBtn = todoContainer.querySelector('.more-btn')
-const todoLabel = todoContainer.querySelector('.todo-contents label')
+const todayGoalsContainer = mainContents.querySelector('.main-contents-goals')
+const todayGoalsForm = mainContents.querySelector('.main-contents-form')
+const todayGoalsFormInput = todayGoalsForm.querySelector('input')
+const todayGoalsCheckBox = todayGoalsContainer.querySelector('.goals-checkbox')
+const todayGoalsMoreBtn = todayGoalsContainer.querySelector('.more-btn')
+const todayGoalsLabel = todayGoalsContainer.querySelector(
+  '.goals-contents label'
+)

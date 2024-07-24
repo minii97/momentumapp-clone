@@ -1,7 +1,7 @@
 const moreBtn = [
   document.querySelector('.greeting-more .more-btn'),
   document.querySelector('.greeting-btn'),
-  document.querySelector('.todo-more .more-btn'),
+  document.querySelector('.goals-more .more-btn'),
 ]
 
 // mobile에선 greeting 문구자체가 버튼의 역할을 하기때문에 querySelectorAll이 아니라 각각 querySelector를 이용하여 array에 저장
@@ -108,18 +108,18 @@ moreMenuItem.forEach((item) => {
       e.currentTarget.classList.contains('edit-btn')
     ) {
       if (e.currentTarget.classList.contains('clear-btn')) {
-        todoFormInput.value = ''
+        todayGoalsFormInput.value = ''
       }
       if (e.currentTarget.classList.contains('edit-btn')) {
-        todoFormInput.value = localStorage.getItem('todo')
+        todayGoalsFormInput.value = localStorage.getItem('todayGoals')
       }
-      todoForm.classList.remove('hide')
-      todoContainer.classList.add('hide')
-      todoCheckBox.checked = false
+      todayGoalsForm.classList.remove('hide')
+      todayGoalsContainer.classList.add('hide')
+      todayGoalsCheckBox.checked = false
       localStorage.removeItem('checked')
-      localStorage.removeItem('todo')
-      todoMoreBtn.classList.remove('clickable')
-      todoLabel.classList.remove('clickable')
+      localStorage.removeItem('todayGoals')
+      todayGoalsMoreBtn.classList.remove('clickable')
+      todayGoalsLabel.classList.remove('clickable')
 
       //   todo-more에서 edit/clear 버튼을 눌러 today-goals 수정시 today-goals 컨텐츠를 숨기고 form 요소를 보이게하고 체크박스 해제/localStorage에 저장된 checkbox값/today-goals 목록 삭제/moreBtn과 label요소를 클릭 불가하게 함.
     } else if (e.currentTarget.classList.contains('edit-name-btn')) {

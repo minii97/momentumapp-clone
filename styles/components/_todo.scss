@@ -1,9 +1,9 @@
-.main-contents-todo {
+.main-contents-goals {
   position: absolute;
   bottom: 140px;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
-  .todo-message {
+  .goals-message {
     @include pos-center-x(fixed);
     top: 20px;
     padding: 12px 24px;
@@ -22,13 +22,13 @@
     }
   }
 
-  .todo-title {
+  .goals-title {
     margin-bottom: 12px;
     font-size: 22px;
     text-transform: uppercase;
   }
 
-  .todo-contents {
+  .goals-contents {
     @include flexbox;
 
     &:hover {
@@ -38,7 +38,7 @@
     }
   }
 
-  .todo-checkbox:checked {
+  .goals-checkbox:checked {
     & + label {
       span {
         color: rgba(255, 255, 255, 0.85);
@@ -52,7 +52,7 @@
     }
   }
 
-  .todo-label {
+  .goals-label {
     @include flexbox;
 
     &:hover {
@@ -92,7 +92,7 @@
   }
 
   @include responsive(T) {
-    .todo-label {
+    .goals-label {
       &::before {
         visibility: visible;
       }
@@ -106,7 +106,7 @@
   @include responsive(M) {
     bottom: 100px;
 
-    .todo-message {
+    .goals-message {
       top: auto;
       bottom: 20px;
       padding: 8px 16px;
@@ -117,12 +117,12 @@
       }
     }
 
-    .todo-title {
+    .goals-title {
       margin-bottom: 8px;
       font-size: 16px;
     }
 
-    .todo-label {
+    .goals-label {
       pointer-events: none;
 
       &.clickable {
