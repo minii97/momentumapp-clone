@@ -1,192 +1,250 @@
-.main-contents-goals {
+.todo {
   position: absolute;
-  bottom: 140px;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  right: 20px;
+  bottom: 20px;
 
-  .goals-message {
-    @include pos-center-x(fixed);
-    top: 20px;
-    padding: 12px 24px;
+  &-contents-wrap {
+    width: 100%;
+  }
+
+  &.is-active {
+    .todo-container {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &-btn {
+    padding: 15px;
     font-size: 18px;
+    font-weight: 600;
+    opacity: 0.7;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &-container {
+    @include flexbox(between);
+    position: absolute;
+    right: 15px;
+    bottom: 50px;
+    flex-direction: column;
+    width: 300px;
     background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 9999px;
+    border-radius: 8px;
     opacity: 0;
     visibility: hidden;
 
-    &.reveal-message {
-      animation: reveal-msg 2s ease-in-out;
-    }
-
-    i {
-      margin-right: 12px;
+    &.more-menu-active {
+      min-height: 220px;
     }
   }
 
-  .goals-title {
-    margin-bottom: 12px;
-    font-size: 22px;
-    text-transform: uppercase;
-  }
+  &-header {
+    @include flexbox(between);
+    width: 100%;
+    padding: 20px 20px 16px;
 
-  .goals-contents {
-    @include flexbox;
-
-    &:hover {
-      .more-btn {
-        visibility: visible !important;
-      }
-    }
-  }
-
-  .goals-checkbox:checked {
-    & + label {
-      span {
-        color: rgba(255, 255, 255, 0.85);
-        text-decoration: line-through;
-      }
-
-      &::before {
-        content: '\F633';
+    &-more {
+      .todo-more-btn {
+        position: relative;
+        right: -6px;
         visibility: visible;
       }
+
+      .todo-more-item button {
+        @include flexbox(start);
+
+        i {
+          margin-right: 5px;
+          font-size: 12px;
+        }
+
+        span {
+          font-size: 13px;
+          font-weight: 600;
+          opacity: 0.7;
+        }
+
+        &:hover {
+          span {
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 
-  .goals-label {
-    @include flexbox;
+  .todo-main {
+    display: none;
 
-    &:hover {
-      &::before {
-        visibility: visible !important;
+    &-wrap {
+      width: 100%;
+      max-height: 500px;
+      overflow: visible auto;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 9999px;
+
+        &-thumb {
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: 9999px;
+        }
+      }
+
+      &.more-menu-active {
+        min-height: 200px;
       }
     }
 
-    span {
+    &.is-active {
       display: block;
-      max-width: 60vw;
-      margin: 0 12px;
-      overflow: hidden;
-      font-size: 36px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
 
-    &::before {
-      @include flexbox;
-      position: relative;
-      top: -3px;
-      width: 22px;
-      height: 22px;
-      font-family: bootstrap-icons !important;
-      font-weight: 600;
-      background-color: rgba(255, 255, 255, 0.12);
-      border: 3px solid #fff;
-      border-radius: 6px;
-      content: '';
+    &-input {
+      width: 100%;
+      padding: 12px 20px;
+      text-align: left;
+      opacity: 0;
       visibility: hidden;
-    }
-  }
 
-  .more-btn {
-    pointer-events: none;
-  }
-
-  @include responsive(T) {
-    .goals-label {
-      &::before {
+      &.is-active {
+        opacity: 1;
         visibility: visible;
       }
     }
+  }
 
-    .more-btn {
-      visibility: visible !important;
+  .empty-todo {
+    &-content {
+      padding: 20px;
+    }
+
+    &-text {
+      display: none;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+
+      &.is-active {
+        display: block;
+      }
+    }
+
+    &-btn {
+      padding: 10px 20px;
+      font-size: 13px;
+      line-height: 1;
+      background-color: #4e4e4e;
+      border-radius: 9999px;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+      &.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &:hover {
+        background-color: rgba(78, 78, 78, 0.5);
+      }
+    }
+  }
+
+  .exist-todo {
+    .todo-item {
+      @include flexbox(start, start);
+      width: 100%;
+      padding: 4px 20px;
+      cursor: default;
+
+      &:hover {
+        .more-btn {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      &.editing {
+        .todo-item-input {
+          opacity: 0.5;
+        }
+
+        &:hover {
+          .more-btn {
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+      }
+
+      &-contents {
+        @include flexbox(start);
+        flex: 1;
+      }
+
+      .todo-item-checkbox {
+        position: relative;
+        top: -2px;
+        margin-right: 8px;
+        opacity: 0.7;
+
+        &:checked + p {
+          text-decoration: line-through;
+          opacity: 0.7;
+        }
+      }
+
+      .todo-item-text {
+        flex: 1;
+        text-align: left;
+      }
+
+      .todo-item-input {
+        width: 100%;
+        height: 1.15em;
+        padding: 0;
+        text-align: left;
+        resize: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .todo-more {
+        position: relative;
+        left: 6px;
+
+        .more-btn {
+          width: 24px;
+          height: 24px;
+
+          i {
+            font-size: 14px;
+          }
+        }
+      }
     }
   }
 
   @include responsive(M) {
-    bottom: 100px;
+    right: 0;
+    bottom: 0;
 
-    .goals-message {
-      top: auto;
-      bottom: 20px;
-      padding: 8px 16px;
-      font-size: 16px;
-
-      &.reveal-message {
-        animation: reveal-msg-sm 2s ease-in-out;
-      }
+    &-container {
+      width: calc(100vw - 30px);
     }
 
-    .goals-title {
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .goals-label {
-      pointer-events: none;
-
-      &.clickable {
-        pointer-events: auto;
-      }
-
-      span {
-        max-width: 40vw;
-        font-size: 18px;
-      }
-
-      &::before {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
+    .todo-main {
+      &-wrap {
+        max-height: 300px;
       }
     }
-  }
-}
-
-@keyframes reveal-msg {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-50%) translateY(-20px);
-  }
-
-  50% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  80% {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes reveal-msg-sm {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-50%) translateY(20px);
-  }
-
-  50% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  80% {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
   }
 }

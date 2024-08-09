@@ -1,0 +1,36 @@
+%todo-more {
+  position: relative;
+
+  .todo-more-list {
+    position: absolute;
+    right: 0;
+    z-index: 200;
+    display: none;
+    padding: 12px 6px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  .todo-more-item {
+    button {
+      width: 100%;
+      padding: 8px;
+      padding-right: 30px;
+      text-align: left;
+      white-space: nowrap;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+
+.todo-more {
+  @extend %todo-more;
+}

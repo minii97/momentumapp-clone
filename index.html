@@ -252,6 +252,67 @@
           >
         </p>
       </div>
+
+      <div class="todo">
+        <button type="button" class="todo-btn">Todo</button>
+
+        <div class="todo-container">
+          <div class="todo-contents-wrap">
+            <header class="todo-header">
+              <h3 class="todo-header-title">Todos</h3>
+
+              <div class="todo-header-more todo-more">
+                <button type="button" class="todo-more-btn more-btn">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="todo-more-list">
+                  <li class="todo-more-item">
+                    <button type="button" class="delete-all-btn">
+                      <i class="bi bi-trash"></i><span>Delete All</span>
+                    </button>
+                  </li>
+                  <li class="todo-more-item">
+                    <button type="button" class="check-all-btn">
+                      <i class="bi bi-check-circle"></i><span>Check All</span>
+                    </button>
+                  </li>
+                  <li class="todo-more-item">
+                    <button type="button" class="clear-all-btn">
+                      <i class="bi bi-circle"></i><span>Clear All</span>
+                    </button>
+                  </li>
+                  <li class="todo-more-item">
+                    <button type="button" class="close-btn">
+                      <i class="bi bi-x-lg"></i><span>Close</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </header>
+
+            <div class="todo-main-wrap">
+              <div class="todo-main empty-todo">
+                <div class="empty-todo-content">
+                  <p class="empty-todo-text default is-active">
+                    Add a todo to get started
+                  </p>
+                  <p class="empty-todo-text clicked-more-menu">
+                    No todo added.<br />
+                    Try adding a new todo
+                  </p>
+                  <button type="button" class="empty-todo-btn">New Todo</button>
+                </div>
+              </div>
+
+              <div class="todo-main exist-todo">
+                <ol class="todo-list"></ol>
+              </div>
+            </div>
+          </div>
+
+          <input class="todo-main-input" type="text" placeholder="New Todo" />
+        </div>
+      </div>
     </main>
     <div class="bg-container"></div>
     <div class="overlay-animation"></div>
@@ -269,5 +330,10 @@
     <script src="./js/quote.js"></script>
     <script src="./js/weather.js"></script>
     <script src="./js/more-menu.js"></script>
+    <script src="./js/todo/todo-global.js"></script>
+    <script src="./js//todo/toggle-todo-container.js"></script>
+    <script src="./js//todo/todo-header-more.js"></script>
+    <script src="./js//todo/add-todo.js"></script>
+    <script src="./js//todo/check-todo.js"></script>
   </body>
 </html>
