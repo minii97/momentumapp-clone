@@ -60,13 +60,14 @@
       border-radius: 8px;
     }
 
-    &-list {
+    &-contents {
       @include pos-center(fixed);
       z-index: 200;
       width: 100%;
       padding: 0 30px;
       opacity: 0;
       visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
       &.is-active {
         opacity: 1;

@@ -1,20 +1,27 @@
-const weatherList = document.querySelector('.weather-list')
+const weatherContainer = document.querySelector('.weather-list')
 const weatherLoading = document.querySelector('.weather-loading')
 const weatherLoadFail = document.querySelector('.weather-load-fail')
 const weatherLoadFailSpan = weatherLoadFail.querySelector(
   '.weather-load-fail-span'
 )
 
-const tempElement = weatherList.querySelector('.temp dd')
-const locationElement = weatherList.querySelector('.location dd')
-const weatherDescElement = weatherList.querySelector('.desc dd')
+const tempElement = weatherContainer.querySelector('.temp dd')
+const locationElement = weatherContainer.querySelector('.location dd')
+const weatherDescElement = weatherContainer.querySelector('.desc dd')
+
+const hideWeatherLoading = (item) => {
+  setTimeout(() => {
+    weatherLoading.classList.add('hide')
+  }, 500)
+
+  item.classList.remove('hide')
+}
 
 navigator.geolocation.getCurrentPosition(getPositionSuccess, getPositionFail)
 
 function getPositionSuccess(pos) {
   const lat = pos.coords.latitude
   const lon = pos.coords.longitude
-  //  위도/경도 정보 변수로 할당
   const API_KEY = 'e252c7e10fd1209b34198bab444d0a15'
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
 
@@ -27,7 +34,7 @@ function getPositionSuccess(pos) {
         const locationCity = data.name
         const weatherCondition = String(data.weather[0].id)
 
-        const weatherConditionAObj = {
+        const weatherConditionObj = {
           thunderstorm: weatherCondition.startsWith('2'),
           rain:
             weatherCondition.startsWith('3') ||
@@ -41,42 +48,30 @@ function getPositionSuccess(pos) {
         tempElement.innerHTML = `${temp}&#8451;`
         locationElement.innerHTML = `${locationCity}, ${locationCountry}`
 
-        if (weatherCondition.thunderstorm) {
+        if (weatherConditionObj.thunderstorm) {
           weatherDescElement.innerHTML = `<i class="bi bi-lightning"></i>`
-        } else if (weatherConditionAObj.rain) {
+        } else if (weatherConditionObj.rain) {
           weatherDescElement.innerHTML = `<i class="bi bi-umbrella"></i>`
-        } else if (weatherConditionAObj.snow) {
+        } else if (weatherConditionObj.snow) {
           weatherDescElement.innerHTML = `<i class="bi bi-snow"></i>`
-        } else if (weatherConditionAObj.mist) {
+        } else if (weatherConditionObj.mist) {
           weatherDescElement.innerHTML = `<i class="bi bi-cloud-fog2"></i>`
-        } else if (weatherConditionAObj.snow) {
+        } else if (weatherConditionObj.snow) {
           weatherDescElement.innerHTML = `<i class="bi bi-sun"></i>`
-        } else if (weatherConditionAObj.clouds) {
+        } else if (weatherConditionObj.clouds) {
           weatherDescElement.innerHTML = `<i class="bi bi-clouds"></i>`
         }
-        setTimeout(() => {
-          weatherLoading.classList.add('hide')
-        }, 500)
 
-        weatherList.classList.remove('hide')
+        hideWeatherLoading(weatherContainer)
       })
       .catch(() => {
         weatherLoadFailSpan.innerHTML = 'weather'
-
-        setTimeout(() => {
-          weatherLoading.classList.add('hide')
-        }, 500)
-
-        weatherLoadFail.classList.remove('hide')
+        hideWeatherLoading(weatherLoadFail)
       })
   )
 }
 
 function getPositionFail(pos) {
-  setTimeout(() => {
-    weatherLoading.classList.add('hide')
-  }, 500)
-
   weatherLoadFailSpan.innerHTML = 'location'
-  weatherLoadFail.classList.remove('hide')
+  hideWeatherLoading(weatherLoadFail)
 }

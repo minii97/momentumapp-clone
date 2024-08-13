@@ -4,28 +4,18 @@ const moreBtn = [
   document.querySelector('.goals-more .more-btn'),
 ]
 
-// mobile에선 greeting 문구자체가 버튼의 역할을 하기때문에 querySelectorAll이 아니라 각각 querySelector를 이용하여 array에 저장
-
 let moreMenuItem = document.querySelectorAll('.more-menu-item button')
 
 let moreMenu
 let activateMoreBtn
 let activatedMoreBtn
-// 각각을 let을 이용하여 변수를 선언해주고 버튼을 누를때마다 각각의 변수에 클릭한 요소 혹은 관련 요소가 각 변수에 할당되게 함.
 
 let editNameInputs
-// editNameInputs라는 빈 변수를 선언하고 edit-btn 눌러서 이름 수정할때 생겨나는 input 요소들을 해당 변수에 저장.
+
 const emptyValueAlertElement = document.querySelector('.greeting-message')
-const logoutAlert = document.querySelector('.logout')
-const logoutButtons = logoutAlert.querySelectorAll('button')
 
 moreBtn.forEach((item) => {
-  item.addEventListener('click', (e) => {
-    if (e.target.classList.contains('edit-name-input')) {
-      return false
-    }
-    // 모바일에서 edit-name-btn을 눌러 이름 수정중에는 edit-name-input이 moreBtn의 자식요소가 되기 때문에 input을 클릭했을때 function이 실행되지않도록함.
-
+  item.addEventListener('click', () => {
     togglingMoreMenu(item)
   })
 })
@@ -75,8 +65,9 @@ function togglingMoreMenu(item) {
       moreMenu.classList.add('is-active')
       overlay.classList.remove('hide')
 
-      overlay.addEventListener('click', () => {
-        // quoteBtn이 눌려서 overlay가 보일때 눌리는 경우에 moreMenu가 undefined라서 에러가 나는 경우를 대비하기위해서 moreMenu에 할당된 값이 있을 때만 is-active 클래스가 사라지도록
+      overlay.addEventListener('click', hideMoreMenuSm)
+
+      function hideMoreMenuSm() {
         if (moreMenu != undefined) {
           moreMenu.classList.remove('is-active')
         }
@@ -86,7 +77,20 @@ function togglingMoreMenu(item) {
         setTimeout(() => {
           moreMenu = undefined
         }, 300)
-      })
+
+        overlay.removeEventListener('click', hideMoreMenuSm)
+      }
+    }
+  }
+
+  window.addEventListener('click', hideMoreMenu)
+
+  function hideMoreMenu(e) {
+    if (!e.target.closest('.more-menu')) {
+      moreMenu = item.nextElementSibling
+      moreMenu.classList.remove('is-active')
+      item.classList.remove('is-active')
+      window.removeEventListener('click', hideMoreMenu)
     }
   }
 }
@@ -96,59 +100,49 @@ moreMenuItem.forEach((item) => {
     if (activatedMoreBtn != undefined) {
       activatedMoreBtn.classList.remove('is-active')
     }
-    // 모바일에서는 activatedMoreBtn 변수를 따로 활용하지 않기 때문에 activateMoreBtn 변수에 할당된 값이 있을때만 해당 요소의 class를 remove해줌
 
     moreMenu.classList.remove('is-active')
     overlay.classList.add('hide')
 
     moreMenu = undefined
-    // 모바일/태블릿 -> Pc로 전환시 activatedMoreBtn 변수에는 값이 저장이 되어있지 않기 때문에 moreMenu의 저장된 값을 비워줌
-    if (
-      e.currentTarget.classList.contains('clear-btn') ||
-      e.currentTarget.classList.contains('edit-btn')
-    ) {
+
+    function pushClearAndEditBtn() {
       if (e.currentTarget.classList.contains('clear-btn')) {
         todayGoalsFormInput.value = ''
       }
       if (e.currentTarget.classList.contains('edit-btn')) {
-        todayGoalsFormInput.value = localStorage.getItem('todayGoals')
+        todayGoalsFormInput.value = todayGoals.text
       }
       todayGoalsForm.classList.remove('hide')
       todayGoalsContainer.classList.add('hide')
       todayGoalsCheckBox.checked = false
-      localStorage.removeItem('checked')
-      localStorage.removeItem('todayGoals')
       todayGoalsMoreBtn.classList.remove('clickable')
       todayGoalsLabel.classList.remove('clickable')
+    }
 
-      //   todo-more에서 edit/clear 버튼을 눌러 today-goals 수정시 today-goals 컨텐츠를 숨기고 form 요소를 보이게하고 체크박스 해제/localStorage에 저장된 checkbox값/today-goals 목록 삭제/moreBtn과 label요소를 클릭 불가하게 함.
+    if (
+      e.currentTarget.classList.contains('clear-btn') ||
+      e.currentTarget.classList.contains('edit-btn')
+    ) {
+      pushClearAndEditBtn()
     } else if (e.currentTarget.classList.contains('edit-name-btn')) {
-      // greeting-more의 edit-name-btn을 눌러 username을 수정할때엔 editing이라는 class를 붙여줌
       if (!e.currentTarget.classList.contains('editing')) {
-        // 해당 버튼을 눌렀는데 editing 클래스가 없으면 = 수정중이 아니라면
         mainContentsUsernameElement.forEach((item) => {
           item.innerHTML = `<input class="edit-name-input" type="text" value="${localStorage.getItem(
             'username'
           )}" autocomplete="off" maxlength="20"/>`
         })
-        // .username span에 이름을 수정할 수 있도록 input요소를 추가함.
 
         editNameInputs = document.querySelectorAll('.edit-name-input')
-        // editNameInputs 변수에 생성된 .edit-name-input 요소를 할당
-      } else {
-        // 해당 버튼을 눌렀는데 editing 클래스가 있다면 = 수정중이라면 , 아무런 동작도 하지않음.
-        return false
       }
 
       e.currentTarget.classList.toggle('editing')
 
       editNameInputs.forEach((item) => {
-        item.addEventListener('keydown', (e) => {
+        function editName(e) {
           if (e.keyCode == 13) {
-            // edit-name-input 요소를 수정하고 enter를 눌렀을때 ("keycode=13")
             if (item.value.trim() == '') {
               emptyValueAlertElement.classList.add('is-active')
-              //   message 출력 ("공백이 아닌 값을 입력해주세요")
             } else {
               localStorage.setItem('username', item.value.trim())
               emptyValueAlertElement.classList.remove('is-active')
@@ -159,13 +153,20 @@ moreMenuItem.forEach((item) => {
               document.querySelectorAll('.edit-name-btn').forEach((item) => {
                 item.classList.remove('editing')
               })
-
-              // 빈칸이 아니라면 앞뒤 공백값을 제외하고 로컬 스토리지에 값을 저장하고 .username에 수정한 값을 innerHTML을 이용하여 넣어주고 수정이 끝났으니 .edit-name-btn에 editing 클래스를 삭제하여 눌렀을때 이름 수정이 가능하게 해줌.
             }
           }
-        })
+        }
+
+        item.addEventListener('keydown', editName)
       })
     } else if (e.currentTarget.classList.contains('logout-btn')) {
+      logout()
+    }
+
+    function logout() {
+      const logoutAlert = document.querySelector('.logout')
+      const logoutButtons = logoutAlert.querySelectorAll('button')
+
       logoutAlert.classList.add('is-active')
       overlay.classList.remove('hide')
 

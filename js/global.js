@@ -3,6 +3,8 @@ const mainContentsUsernameElement = mainContents.querySelectorAll('.username')
 const overlay = document.querySelector('.overlay')
 let randomNum
 
+let todayGoals = {}
+
 const mql = window.matchMedia('(max-width: 1199px)')
 // .overlay 요소의 is-active toggle을 위해 반응형 구현을 위한 matchMedia API 사용
 

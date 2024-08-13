@@ -121,61 +121,63 @@ function paintToDos(data) {
     const todoItemMoreList = item.closest('.todo-more-list')
     const todoItem = item.closest('.todo-item')
     todoItemMoreList.classList.remove('is-active')
-    todoMain.classList.remove('more-menu-active')
+
+    if (todoMain.classList.contains('more-menu-active')) {
+      todoMain.classList.remove('more-menu-active')
+    }
 
     if (item.innerHTML == 'Edit') {
-      function editTodoItem() {
-        if (textArea.value.trim() != '') {
-          const editedItemText = document.createElement('p')
+      if (todo.querySelector('.editing') == null) {
+        function editTodoItem(e) {
+          if (e.keyCode == 13 && textArea.value.trim() != '') {
+            e.preventDefault()
 
-          editedItemText.innerHTML = textArea.value.trim()
-          editedItemText.classList.add('todo-item-text')
+            const editedItemText = document.createElement('p')
 
-          todoItemContents.appendChild(editedItemText)
+            editedItemText.innerHTML = textArea.value.trim()
+            editedItemText.classList.add('todo-item-text')
 
-          const text = editedItemText.innerHTML
-          const id = parseInt(todoItemContents.closest('.todo-item').id)
-          const check = todoItemContents.querySelector(
-            '.todo-item-checkbox'
-          ).checked
+            todoItemContents.appendChild(editedItemText)
 
-          saveCheckboxState(id, text, check)
+            const text = editedItemText.innerHTML
+            const id = parseInt(todoItemContents.closest('.todo-item').id)
+            const check = todoItemContents.querySelector(
+              '.todo-item-checkbox'
+            ).checked
 
-          textArea.remove()
+            saveCheckboxState(id, text, check)
 
-          todoItem.classList.remove('editing')
+            textArea.remove()
+
+            todoItem.classList.remove('editing')
+          }
         }
+
+        todoItem.classList.add('editing')
+
+        const itemText = item
+          .closest('.todo-item-more')
+          .previousElementSibling.querySelector('.todo-item-text')
+
+        const textArea = document.createElement('textarea')
+        textArea.value = itemText.innerHTML
+        textArea.classList.add('todo-item-input')
+        textArea.setAttribute('rows', '1')
+
+        todoItemContents.appendChild(textArea)
+        itemText.remove()
+
+        resizeTextArea(textArea)
+        textArea.focus()
+
+        textArea.addEventListener('input', (e) => {
+          const target = e.target
+
+          resizeTextArea(target)
+        })
+
+        textArea.addEventListener('keydown', editTodoItem)
       }
-
-      todoItem.classList.add('editing')
-
-      const itemText = item
-        .closest('.todo-item-more')
-        .previousElementSibling.querySelector('.todo-item-text')
-
-      const textArea = document.createElement('textarea')
-      textArea.value = itemText.innerHTML
-      textArea.classList.add('todo-item-input')
-      textArea.setAttribute('rows', '1')
-
-      todoItemContents.appendChild(textArea)
-      itemText.remove()
-
-      resizeTextArea(textArea)
-      textArea.focus()
-
-      textArea.addEventListener('input', (e) => {
-        const target = e.target
-
-        resizeTextArea(target)
-      })
-
-      textArea.addEventListener('keydown', (e) => {
-        if (e.keyCode == 13) {
-          e.preventDefault()
-          editTodoItem()
-        }
-      })
     } else if (item.innerHTML == 'Delete') {
       todos = todos.filter((element) => element.id !== parseInt(todoItem.id))
       todoItem.remove()
