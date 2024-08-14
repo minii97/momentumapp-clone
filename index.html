@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/ddt0ijb.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/momentumapp-clone/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/momentumapp-clone/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/momentumapp-clone/favicon-16x16.png" />
+    <link rel="manifest" href="/momentumapp-clone/site.webmanifest" />
+    <link rel="mask-icon" href="/momentumapp-clone/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <title>Hello! - Momentum App</title>
+  </head>
+  <body>
+    <div class="login-wrap">
+      <div class="login">
+        <h1 class="login-title">Hello! What's your name?</h1>
+        <form class="login-form" method="get" action="#">
+          <input
+            type="text"
+            class="login-form-input"
+            required
+            maxlength="20"
+            autocomplete="off"
+          />
+          <p class="login-form-text">
+            <span
+              >Please enter your first name or the name you prefer to be
+              called.</span
+            >
+            <span class="hide"
+              >Please enter a real name, not a blank space</span
+            >
+          </p>
+          <button type="submit" class="login-form-btn">
+            Continue <i class="bi bi-arrow-right-short"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <main class="main-contents">
+      <div class="main-contents-text">
+        <div class="main-contents-time">
+          <time datetime="2024-07-03 00:00">00:00</time>
+        </div>
+
+        <div class="main-contents-greeting lg-only">
+          <h3 class="greeting-text">
+            <span class="greeting-phrase"></span>,
+            <span class="username"></span>
+          </h3>
+
+          <div class="greeting-more more-menu">
+            <button class="more-btn" type="button" aria-label="more menu">
+              <i class="bi bi-three-dots"></i>
+            </button>
+
+            <div class="more-menu-list-wrap">
+              <ul class="more-menu-list">
+                <li class="more-menu-item">
+                  <button class="edit-name-btn" type="button">
+                    <span>Edit name</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="logout-btn" type="button">
+                    <span>Logout</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="close-btn" type="button">
+                    <span>Close</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-contents-greeting lg-hidden">
+          <div class="greeting-more more-menu">
+            <button class="greeting-btn">
+              <span class="greeting-phrase"></span>,
+              <span class="username"></span>
+            </button>
+
+            <div class="more-menu-list-wrap">
+              <h3 class="more-menu-list-title">User Menu</h3>
+
+              <ul class="more-menu-list">
+                <li class="more-menu-item">
+                  <button class="edit-name-btn" type="button">
+                    <span>Edit name</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="logout-btn" type="button">
+                    <span>Logout</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button class="close-btn" type="button">
+                    <span>Close</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="greeting-message">
+          <span>Please enter a real name, not a blank space </span>
+        </div>
+
+        <div class="logout">
+          <h3 class="logout-title">Alert</h3>
+          <p class="logout-text">
+            If you log out,
+            <strong>
+              all the information you entered (To-Do list, Today goal, name)
+              will be deleted.
+            </strong>
+            Are you sure you want to log out?
+          </p>
+
+          <div class="logout-btn-wrap">
+            <button type="button" class="yes-btn">Yes</button>
+            <button type="button" class="no-btn">No</button>
+          </div>
+        </div>
+      </div>
+
+      <form class="main-contents-form" method="get" action="#">
+        <label class="main-form-label" for="main-form-input"
+          >What is your main goal for today?</label
+        >
+        <input
+          id="main-form-input"
+          class="main-form-input"
+          type="text"
+          autocomplete="off"
+          required
+        />
+
+        <p class="hide">Please enter your today goals</p>
+      </form>
+
+      <div class="main-contents-goals hide">
+        <div class="goals-message">
+          <i class="bi bi-fire"></i><span>Great Work!</span>
+        </div>
+
+        <h3 class="goals-title">Today</h3>
+
+        <div class="goals-contents">
+          <input
+            class="goals-checkbox visually-hidden"
+            id="goals-checkbox"
+            type="checkbox"
+          />
+          <label class="goals-label" for="goals-checkbox"><span></span></label>
+
+          <div class="goals-more more-menu">
+            <button type="button" class="more-btn">
+              <i class="bi bi-three-dots"></i>
+            </button>
+
+            <div class="more-menu-list-wrap">
+              <h3 class="more-menu-list-title lg-hidden">Menu</h3>
+
+              <ul class="more-menu-list">
+                <li class="more-menu-item">
+                  <button type="button" class="clear-btn">
+                    <i class="bi bi-trash"></i> <span>Clear</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button type="button" class="edit-btn">
+                    <i class="bi bi-pencil"></i> <span>Edit</span>
+                  </button>
+                </li>
+                <li class="more-menu-item">
+                  <button type="button" class="close-btn">
+                    <i class="bi bi-x-lg"></i> <span>Close</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-container">
+        <button type="button" class="quote-btn sm-only">Random Quote</button>
+
+        <div class="quote-contents">
+          <dl class="quote-list">
+            <div class="quote-item">
+              <dt class="visually-hidden">Quote</dt>
+              <dd class="quote"></dd>
+            </div>
+            <div class="quote-item">
+              <dt class="visually-hidden">Author</dt>
+              <dd class="author"></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="weather-container">
+        <dl class="weather-list hide">
+          <div class="weather-item desc">
+            <dt class="visually-hidden">Weather</dt>
+            <dd>
+              <i class="bi bi-sun"></i>
+              <span class="visually-hidden"></span>
+            </dd>
+          </div>
+          <div class="weather-item temp">
+            <dt class="visually-hidden">Temp</dt>
+            <dd></dd>
+          </div>
+          <div class="weather-item location">
+            <dt class="visually-hidden"></dt>
+            <dd></dd>
+          </div>
+        </dl>
+
+        <span class="weather-loading">Loading...</span>
+        <p class="weather-load-fail hide">
+          <span><i class="bi bi-exclamation-circle"></i> Failed to load</span>
+          <span
+            ><span class="weather-load-fail-span">location</span> info.</span
+          >
+        </p>
+      </div>
+
+      <div class="todo">
+        <button type="button" class="todo-btn">Todo</button>
+
+        <div class="todo-container">
+          <div class="todo-contents-wrap">
+            <header class="todo-header">
+              <h3 class="todo-header-title">Todos</h3>
+
+              <div class="todo-header-more todo-more">
+                <button type="button" class="todo-more-btn more-btn">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="todo-more-list">
+                  <li class="todo-more-item">
+                    <button type="button" class="delete-all-btn">
+                      <i class="bi bi-trash"></i><span>Delete All</span>
+                    </button>
+                  </li>
+                  <li class="todo-more-item">
+                    <button type="button" class="check-all-btn">
+                      <i class="bi bi-check-circle"></i><span>Check All</span>
+                    </button>
+                  </li>
+                  <li class="todo-more-item">
+                    <button type="button" class="clear-all-btn">
+                      <i class="bi bi-circle"></i><span>Clear All</span>
+                    </button>
+                  </li>
+                  <li class="todo-more-item">
+                    <button type="button" class="close-btn">
+                      <i class="bi bi-x-lg"></i><span>Close</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </header>
+
+            <div class="todo-main-wrap">
+              <div class="todo-main empty-todo">
+                <div class="empty-todo-content">
+                  <p class="empty-todo-text default is-active">
+                    Add a todo to get started
+                  </p>
+                  <p class="empty-todo-text clicked-more-menu">
+                    No todo added.<br />
+                    Try adding a new todo
+                  </p>
+                  <button type="button" class="empty-todo-btn">New Todo</button>
+                </div>
+              </div>
+
+              <div class="todo-main exist-todo">
+                <ol class="todo-list"></ol>
+              </div>
+            </div>
+          </div>
+
+          <input class="todo-main-input" type="text" placeholder="New Todo" />
+        </div>
+      </div>
+    </main>
+    <div class="bg-container"></div>
+    <div class="overlay-animation"></div>
+    <div class="overlay hide"></div>
+    <figure class="logo">
+      <figcaption class="visually-hidden">Logo</figcaption>
+      <img src="assets/img/logo.svg" alt="" />
+    </figure>
+
+    <script src="./js/global.js"></script>
+    <script src="./js/bg.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/time.js"></script>
+    <script src="./js/today-goals.js"></script>
+    <script src="./js/quote.js"></script>
+    <script src="./js/weather.js"></script>
+    <script src="./js/more-menu.js"></script>
+    <script src="./js/todo/todo-global.js"></script>
+    <script src="./js//todo/toggle-todo-container.js"></script>
+    <script src="./js//todo/todo-header-more.js"></script>
+    <script src="./js//todo/add-todo.js"></script>
+  </body>
+</html>
