@@ -8,6 +8,8 @@ function activeQuoteContainer() {
   function hideQuoteContainer(e) {
     e.currentTarget.classList.add('hide')
     quoteContents.classList.remove('is-active')
+
+    overlay.removeEventListener('click', hideQuoteContainer)
   }
 
   overlay.addEventListener('click', hideQuoteContainer)

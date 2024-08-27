@@ -64,7 +64,6 @@ function togglingMoreMenu(item) {
     } else {
       moreMenu.classList.add('is-active')
       overlay.classList.remove('hide')
-
       overlay.addEventListener('click', hideMoreMenuSm)
 
       function hideMoreMenuSm() {
